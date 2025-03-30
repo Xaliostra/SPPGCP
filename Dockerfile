@@ -2,8 +2,10 @@ FROM python:3.9
 WORKDIR /app
 
 COPY requirements.txt .
-COPY index.html .
+
 RUN pip install -r requirements.txt
+
+COPY index.html .
 COPY . .
 
-CMD ["python", "app.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
