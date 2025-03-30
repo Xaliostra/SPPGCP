@@ -1,7 +1,7 @@
 import boto3
 import openai
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
@@ -34,6 +34,10 @@ def generate_recipe(ingredients):
                   {"role": "user", "content": prompt}]
     )
     return response['choices'][0]['message']['content']
+
+@app.route("/")
+def index():
+    return send_file("index.html")
 
 @app.route("/analyze", methods=["POST"])
 def analyze_image():
