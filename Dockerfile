@@ -2,6 +2,8 @@ FROM python:3.9
 WORKDIR /app
 
 COPY . .  # Скопирует ВСЕ файлы, включая index.html
+COPY index.html /app/index.html
+
 
 RUN pip install -r requirements.txt
 
