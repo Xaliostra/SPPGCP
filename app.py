@@ -1,9 +1,16 @@
 import boto3
 import openai
 import os
+import logging
 from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
+
+logging.basicConfig(level=logging.DEBUG)
+
+@app.before_request
+def log_request():
+    app.logger.debug(f"Request to {request.path}")
 
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
